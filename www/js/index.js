@@ -1,46 +1,44 @@
 var app = {
-  startCamera: function(){
-      
-      //WORKS!
-      var desiredFps = 60.0;
-      cordova.plugins.camerapreview.startCamera("front",desiredFps);
-  },
-
-  startCameraAnotherPos: function(){
+startCamera: function(){
+    
+    var desiredFps = 60.0;
+    cordova.plugins.camerapreview.startCamera("front",desiredFps);
+    
+},
+    
+startCameraAnotherPos: function(){
     CameraPreview.startCamera({x: 50, y: 100, width: 300, height:300, camera: "back", tapPhoto: true, previewDrag: true, toBack: false});
-  },
-
-  stopCamera: function(){
-      //WORKS!
-    CameraPreview.stopCamera();
-  },
-
-  takePicture: function(){
+},
+    
+stopCamera: function(){
+    cordova.plugins.camerapreview.stopCamera(function handler(){});
+},
+    
+takePicture: function(){
     CameraPreview.takePicture({maxWidth: window.device.width, maxHeight: window.device.height});
-  },
-
-  switchCamera: function(){
-      //WORKS!
-    CameraPreview.switchCamera();
-  },
-
-  show: function(){
+},
+    
+switchCamera: function(){
+    cordova.plugins.camerapreview.switchCamera();
+},
+    
+show: function(){
     CameraPreview.show();
-  },
-
-  hide: function(){
+},
+    
+hide: function(){
     CameraPreview.hide();
-  },
-
-  colorEffectChanged: function(){
+},
+    
+colorEffectChanged: function(){
     var effect = document.getElementById('colorEffectCombo').value;
     CameraPreview.setColorEffect(effect);
-  },
-
-  init: function(){
+},
+    
+init: function(){
     document.getElementById('startCameraButton').addEventListener('click', this.startCamera, false);
     document.getElementById('startCameraAnotherPosButton').addEventListener('click', this.startCameraAnotherPos, false);
-
+    
     document.getElementById('stopCameraButton').addEventListener('click', this.stopCamera, false);
     document.getElementById('takePictureButton').addEventListener('click', this.takePicture, false);
     document.getElementById('switchCameraButton').addEventListener('click', this.switchCamera, false);
@@ -50,12 +48,12 @@ var app = {
     //window.addEventListener('orientationchange', this.onStopCamera, false);
     
     CameraPreview.setOnPictureTakenHandler(function(result){
-      document.getElementById('originalPicture').src = result[0]; //originalPicturePath;
-      document.getElementById('previewPicture').src = result[1]; //previewPicturePath;
-    });
-  }
+                                           document.getElementById('originalPicture').src = result[0]; //originalPicturePath;
+                                           document.getElementById('previewPicture').src = result[1]; //previewPicturePath;
+                                           });
+}
 };
 
 document.addEventListener('deviceready', function(){	
-  app.init();
-}, false);
+                          app.init();
+                          }, false);
