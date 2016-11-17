@@ -1,6 +1,9 @@
 var app = {
   startCamera: function(){
-    CameraPreview.startCamera();
+      
+      //WORKS!
+      var desiredFps = 60.0;
+      cordova.plugins.camerapreview.startCamera("front",desiredFps);
   },
 
   startCameraAnotherPos: function(){
@@ -8,6 +11,7 @@ var app = {
   },
 
   stopCamera: function(){
+      //WORKS!
     CameraPreview.stopCamera();
   },
 
@@ -16,6 +20,7 @@ var app = {
   },
 
   switchCamera: function(){
+      //WORKS!
     CameraPreview.switchCamera();
   },
 
